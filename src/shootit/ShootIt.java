@@ -1,14 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package shootit;
 
 
 public class ShootIt extends javax.swing.JFrame{
 
-    private int PWIDTH = 500;
-    private int PHEIGHT = 500;
+    private int PWIDTH = 700;
+    private int PHEIGHT = 700;
     
     public static void main(String[] args) {
         new ShootIt();

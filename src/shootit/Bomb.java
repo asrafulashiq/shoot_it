@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package shootit;
 
 import java.awt.*;
@@ -13,7 +10,7 @@ public class Bomb {
     
     public int x; // x-coordinate
     public int y; // y-coordinate
-    private String speed = "SLOW";
+    private String speed = "FAST";
     
     private Shooter sh;
     private static final int RADIUS = 5;
@@ -36,13 +33,7 @@ public class Bomb {
         g.fillOval(x-RADIUS/2, y-RADIUS/2, 2*RADIUS, 2*RADIUS);
     }
     
-    /*
-     * check if it hits the point p
-     */
-    public boolean hit(Point p){
-        
-        return true;
-    }
+    
     
     /*
      * get position of the bomb
@@ -58,12 +49,12 @@ public class Bomb {
         
         int dy;
         
-        if(speed=="SLOW") dy=2;
-        else if(speed=="MEDIUM") dy = 5;
-        else if(speed=="FAST") dy = 7;
-        else dy = 10;
+        if("SLOW".equals(speed)) dy=10;
+        else if("MEDIUM".equals(speed)) dy = 15;
+        else if("FAST".equals(speed)) dy = 17;
+        else dy = 20;
         
-        this.y-=10;
+        this.y-=dy;
             
     }
     
@@ -84,8 +75,5 @@ public class Bomb {
         if(h1<=0)return false;
         else return true;
     }
-    
-    
-    
-    
+      
 }

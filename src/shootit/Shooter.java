@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package shootit;
 import java.awt.*;
 import javax.swing.*;
@@ -16,7 +13,7 @@ public class Shooter {
     public GamePanel gp;
     private int len = 40;
     
-    private int dx=5;
+    private int dx=9;
     
     public Shooter(GamePanel gp){
         //this(gp.getWidth()/2 , gp.getHeight());
@@ -70,9 +67,9 @@ public class Shooter {
      */
     public void draw(Graphics g){
         g.setColor(new Color(200,230,190));
-        g.fillRect(x-len/2, y-len/2 ,len,len);
+        g.fill3DRect(x-len/2, y-len/2 ,len,len,true);
         g.setColor(new Color(100,100,110));
-        g.fillRect(x-5,y-len, 10, len/2);
-        //g.fillRect(200, 200, 30, 30);
+        g.fill3DRect(x-5,y-len, 10, len/2,true);
+        
     }
 }

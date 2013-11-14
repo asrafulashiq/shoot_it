@@ -1,13 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package shootit;
 
-/**
- *
- * @author mac
- */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -16,14 +10,16 @@ import java.util.ArrayList;
 public class GamePanel extends JPanel implements ActionListener{
     
     
-    private int PWIDTH = 500;
-    private int PHEIGHT = 500 ;
+    private int PWIDTH = 700;
+    private int PHEIGHT = 700 ;
     public boolean pause = false;
     public boolean run = false;
     
     public Shooter shooter;
     public ArrayList<Bomb> bombs = new ArrayList<Bomb>();
-    private Obstacle obs =null;
+    //public ArrayList<Obstacle> obs = new ArrayList<Obstacle>();
+    
+    //private Obstacle obs =null;
     
     
     // variables for game states
@@ -48,7 +44,7 @@ public class GamePanel extends JPanel implements ActionListener{
        this.setFocusable(true);
        this.requestFocus();
        shooter = new Shooter(this);
-       obs  = new Obstacle(this);
+       //obs  = new Obstacle(this);
        
        this.addKeyListener(new MyKeyListener());
        this.startGame();
@@ -60,6 +56,7 @@ public class GamePanel extends JPanel implements ActionListener{
      */
     private void startGame(){
        
+      // obs.add(new Obstacle(this));
        this.initialTime = System.currentTimeMillis();
        this.timer.start();
         
@@ -86,35 +83,47 @@ public class GamePanel extends JPanel implements ActionListener{
         this.gameRender();
         this.gameUpdate();
         this.printScreen();
+        
+        try{
+            Thread.sleep(10);
+        }
+        catch(InterruptedException ex){
+            
+        }
     }
     
     /*
      * update the game states
      */
-    public void gameUpdate(){
+    public synchronized void gameUpdate(){
         
-        // forwarding the bomb
-        if(this.bombs.size()!=0){
-            for(Bomb b:bombs){
-                b.forward();
+        // forwarding the obstacle
+        /*for(java.util.Iterator<Obstacle> i =this.obs.iterator();i.hasNext();){
+            Obstacle o = i.next();
+            
+            if(!o.inRange()){
+                i.remove();
             }
+        }
+        */
+        
+        // deleting out of bound bombs
+        
+        for(java.util.Iterator<Bomb> i=this.bombs.iterator();i.hasNext();){
+            Bomb elm = i.next();
+                    
+            elm.forward();
+            if(!elm.inFrame()){
+                i.remove();
+            }
+           
+           
             
         }
         
         
-        // deleting out of bound bombs
-        for(java.util.Iterator<Bomb> i=this.bombs.iterator();i.hasNext();){
-            Bomb elm = i.next();
-            if(!elm.inFrame()){
-                i.remove();
-            }
-        }
         
-        // forwarding the obstacle
-        this.obs.run();
-        if(!this.obs.inRange()){
-            obs=new Obstacle(this);
-        }
+        // if bomb hits the obstacle then destroy
         
         
     }
@@ -143,8 +152,7 @@ public class GamePanel extends JPanel implements ActionListener{
         }
         
         
-        
-       if(this.obs!=null) this.obs.draw(g);
+       
         
         
     }
