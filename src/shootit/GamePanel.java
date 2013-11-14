@@ -36,8 +36,10 @@ public class GamePanel extends JPanel implements ActionListener{
         this.run();
     }
     
-    public GamePanel(){
+    public GamePanel(int w, int h){
         
+       this.PWIDTH = w;
+       this.PHEIGHT = h;
        this.setSize(this.PWIDTH,this.PHEIGHT);
        //System.out.print(this.getWidth());
        //this.setPreferredSize(new Dimension(this.PWIDTH,this.PHEIGHT));
@@ -116,6 +118,7 @@ public class GamePanel extends JPanel implements ActionListener{
             
             if(obs!=null){
                 if(obs.hit(elm.getPos())){
+                    this.destroyedObs++;
                     obs = new Obstacle(this);
                 }
             }
@@ -161,7 +164,25 @@ public class GamePanel extends JPanel implements ActionListener{
         }
         
         if(obs!=null)obs.draw(g);
+        this.printPoint(g);
         
+    }
+    
+    /*
+     * calculate point
+     */
+    public void printPoint(Graphics g){
+        g.setFont(new Font("Serif",Font.BOLD,15));
+        g.setColor(Color.WHITE);
+        g.drawString(
+                
+                String.format("%-10s : %d", "DESTROYED",this.destroyedObs)
+                ,getWidth()-200,getHeight()-60);
+        
+        this.timePassed = (System.currentTimeMillis()-this.initialTime)/1000;
+        g.drawString(
+                String.format("%-15s : %d s","TIME",timePassed)
+                ,getWidth()-200,getHeight()-40);
     }
     
     /*

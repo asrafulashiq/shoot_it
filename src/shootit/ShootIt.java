@@ -13,12 +13,11 @@ public class ShootIt extends javax.swing.JFrame{
     
     public ShootIt(){
         
-        GamePanel panel = new GamePanel();
+        GamePanel panel = new GamePanel(this.PWIDTH,this.PHEIGHT);
         this.add(panel);
         
         this.setSize(this.PWIDTH,this.PHEIGHT);
         this.setLocation(100,100);
-        //this.setPreferredSize(new java.awt.Dimension(this.PWIDTH,this.PHEIGHT));
         this.setVisible(true);
         this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         

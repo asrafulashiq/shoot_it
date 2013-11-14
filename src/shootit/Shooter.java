@@ -19,7 +19,7 @@ public class Shooter {
         //this(gp.getWidth()/2 , gp.getHeight());
         this.gp = gp; 
         this.x = gp.getWidth()/2;
-        this.y = gp.getHeight()-100;
+        this.y = gp.getHeight()-150;
         
     }
     
