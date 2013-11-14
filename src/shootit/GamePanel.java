@@ -19,7 +19,7 @@ public class GamePanel extends JPanel implements ActionListener{
     public ArrayList<Bomb> bombs = new ArrayList<Bomb>();
     //public ArrayList<Obstacle> obs = new ArrayList<Obstacle>();
     
-    //private Obstacle obs =null;
+    private Obstacle obs =null;
     
     
     // variables for game states
@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements ActionListener{
        this.setFocusable(true);
        this.requestFocus();
        shooter = new Shooter(this);
-       //obs  = new Obstacle(this);
+       obs  = new Obstacle(this);
        
        this.addKeyListener(new MyKeyListener());
        this.startGame();
@@ -59,7 +59,7 @@ public class GamePanel extends JPanel implements ActionListener{
       // obs.add(new Obstacle(this));
        this.initialTime = System.currentTimeMillis();
        this.timer.start();
-        
+       //this.run(); 
     }
     
     /*
@@ -112,18 +112,32 @@ public class GamePanel extends JPanel implements ActionListener{
         for(java.util.Iterator<Bomb> i=this.bombs.iterator();i.hasNext();){
             Bomb elm = i.next();
                     
+            
+           
+            if(obs!=null){
+                
+                
+                
+                if(obs.hit(elm.getPos())){
+                    obs=null;
+                    obs = new Obstacle(this);
+                }
+                
+            }
+            
             elm.forward();
             if(!elm.inFrame()){
                 i.remove();
             }
-           
-           
-            
         }
         
-        
-        
-        // if bomb hits the obstacle then destroy
+        if(obs!=null){
+            if(!obs.inRange()){
+                    obs = null;
+                    obs = new Obstacle(this);
+                }
+            obs.forward();
+        }
         
         
     }
@@ -146,14 +160,12 @@ public class GamePanel extends JPanel implements ActionListener{
         g.fillRect(0, 0, getWidth(), getHeight());
         this.shooter.draw(g);
         
-        if (this.bombs.size()!=0)
+        if (!this.bombs.isEmpty())
         for(Bomb b : this.bombs){
             b.draw(g);
         }
         
-        
-       
-        
+        if(this.obs!=null) obs.draw(g);
         
     }
     

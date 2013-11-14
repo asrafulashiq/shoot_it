@@ -13,7 +13,7 @@ public class Obstacle {
     public int x;
     public int y;
     
-    public static int dx=5;
+    public static int dx;
     
    
     
@@ -26,6 +26,7 @@ public class Obstacle {
     
     public Obstacle(GamePanel gp){
         this.gp = gp;
+        dx=5;
         this.setPos();
     }
     
@@ -76,7 +77,7 @@ public class Obstacle {
     
     
     
-    public void run(){
+    public void forward(){
        this.x-=(this.orient)*dx;
     }
     
