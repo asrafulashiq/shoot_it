@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GamePanel extends JPanel implements ActionListener{
     
@@ -44,7 +45,8 @@ public class GamePanel extends JPanel implements ActionListener{
        this.setFocusable(true);
        this.requestFocus();
        shooter = new Shooter(this);
-       obs  = new Obstacle(this);
+       //obs.add (new Obstacle(this) );
+       obs = new Obstacle(this);
        
        this.addKeyListener(new MyKeyListener());
        this.startGame();
@@ -109,20 +111,13 @@ public class GamePanel extends JPanel implements ActionListener{
         
         // deleting out of bound bombs
         
-        for(java.util.Iterator<Bomb> i=this.bombs.iterator();i.hasNext();){
+        for(Iterator<Bomb> i=this.bombs.iterator();i.hasNext();){
             Bomb elm = i.next();
-                    
             
-           
             if(obs!=null){
-                
-                
-                
                 if(obs.hit(elm.getPos())){
-                    obs=null;
                     obs = new Obstacle(this);
                 }
-                
             }
             
             elm.forward();
@@ -132,12 +127,12 @@ public class GamePanel extends JPanel implements ActionListener{
         }
         
         if(obs!=null){
-            if(!obs.inRange()){
-                    obs = null;
-                    obs = new Obstacle(this);
-                }
             obs.forward();
+            if(!obs.inRange()){
+                obs = new Obstacle(this);
+            }
         }
+        
         
         
     }
@@ -165,7 +160,7 @@ public class GamePanel extends JPanel implements ActionListener{
             b.draw(g);
         }
         
-        if(this.obs!=null) obs.draw(g);
+        if(obs!=null)obs.draw(g);
         
     }
     
