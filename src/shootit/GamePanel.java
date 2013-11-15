@@ -13,7 +13,7 @@ public class GamePanel extends JPanel implements ActionListener{
     
     private int PWIDTH = 700;
     private int PHEIGHT = 700 ;
-    public boolean pause = false;
+    //public boolean pause = false;
     public boolean run = false;
     
     public Shooter shooter;
@@ -78,13 +78,18 @@ public class GamePanel extends JPanel implements ActionListener{
      * pause for a while
      */
     public void pauseGame(){
-        
+        run = false;
+    }
+    
+    public void resumeGame(){
+        run = true;
     }
     
     /*
      * running of the animation loop
      */
     public void run(){
+        if(run){
         this.gameRender();
         this.gameUpdate();
         this.printScreen();
@@ -94,6 +99,7 @@ public class GamePanel extends JPanel implements ActionListener{
         }
         catch(InterruptedException ex){
             
+        }
         }
     }
     
@@ -192,6 +198,10 @@ public class GamePanel extends JPanel implements ActionListener{
     public void gameOver(){
         
     }
+    
+    
+    
+    
     
     /*
      * key event listener
