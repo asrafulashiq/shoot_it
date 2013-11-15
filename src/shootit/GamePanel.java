@@ -26,6 +26,7 @@ public class GamePanel extends JPanel implements ActionListener{
     // variables for game states
     public int destroyedObs = 0;
     public long timePassed = 0;
+    public int shootNum = 0;
     public long initialTime ; 
     public long currentTime ; 
     
@@ -208,6 +209,7 @@ public class GamePanel extends JPanel implements ActionListener{
                     break;
                 case KeyEvent.VK_SPACE:
                     shooter.shoot();
+                    shootNum++;
                     break;
             }
         }

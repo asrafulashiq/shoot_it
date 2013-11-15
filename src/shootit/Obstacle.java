@@ -9,6 +9,7 @@ public class Obstacle {
     private static final int LEFT = 1;
     private static final int RIGHT = -1;
     private int orient ;
+    private Color color ; 
     
     public int x;
     public int y;
@@ -49,15 +50,19 @@ public class Obstacle {
                 (.4*h)*rand.nextFloat()+.1*h
                 );
         
+        // set size
+        this.RX = (rand.nextInt(10))+10;
+        this.RY = (rand.nextInt(10))+10;
+        color =  this.randColor();
     }
     
     /*
      * draw in the graphics
      */
     public void draw(Graphics g){
-        g.setColor(Color.CYAN);
+        g.setColor(color);
         g.fillOval(x-RX, y-RY, 2*RX, 2*RY);
-        g.setColor(Color.LIGHT_GRAY);
+        g.setColor(Color.darkGray);
         g.drawOval(x-RX, y-RY, 2*RX, 2*RY);
         
         
@@ -100,6 +105,17 @@ public class Obstacle {
         if(bx>this.x-RX && bx< x+RX && by>y-RY && by < y+RY )
             return true;
         return false;
+    }
+    
+    /*
+     * get random color
+     */
+    public Color randColor(){
+        int red = rand.nextInt(255);
+        int green = rand.nextInt(255);
+        int blue = rand.nextInt(255);
+        
+        return new Color(red,green,blue);
     }
     
 }
