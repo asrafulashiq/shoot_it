@@ -20,7 +20,7 @@ public class ShootIt extends JFrame implements WindowListener{
         this.add(panel);
         
         
-        
+        this.setTitle("Shoot It");
         this.setSize(this.PWIDTH,this.PHEIGHT);
         this.setLocation(100,100);
         this.setVisible(true);
