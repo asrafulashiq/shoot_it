@@ -161,7 +161,7 @@ public class GamePanel extends JPanel implements ActionListener{
         
         Graphics g = this.getGraphics();
         g.clearRect(0, 0, this.getWidth(), this.getHeight());
-        g.setColor(new Color(30,30,50));
+        g.setColor(new Color(130,130,150));
         g.fillRect(0, 0, getWidth(), getHeight());
         this.shooter.draw(g);
         
