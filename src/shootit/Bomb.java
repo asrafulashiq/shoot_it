@@ -2,6 +2,7 @@
 package shootit;
 
 import java.awt.*;
+import javax.swing.*;
 
 /**
  * This is a bomb object
@@ -15,6 +16,8 @@ public class Bomb {
     private Shooter sh;
     private static final int RADIUS = 5;
     
+    private Image img ;
+    
     
     /*
      * constructor with initial coordinate
@@ -23,6 +26,9 @@ public class Bomb {
         this.sh = sh;
         this.x=x;
         this.y=y;
+        
+        img = new ImageIcon("images/b1.png").getImage().getScaledInstance(15, 30, Image.SCALE_SMOOTH);
+        
     }
     
     /*
@@ -30,7 +36,8 @@ public class Bomb {
      */
     public void draw(Graphics g){
         g.setColor(Color.RED);
-        g.fillOval(x-RADIUS/2, y-RADIUS/2, 2*RADIUS, 2*RADIUS);
+        //g.fillOval(x-RADIUS/2, y-RADIUS/2, 2*RADIUS, 2*RADIUS);
+        g.drawImage(img, x-5, y+40, null);
     }
     
     
