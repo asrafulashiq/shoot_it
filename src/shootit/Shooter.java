@@ -3,8 +3,7 @@ package shootit;
 import java.awt.*;
 import javax.swing.*;
 
-/**
- * class for the shooter object
+/* class for the shooter object
  *  there is only one shooter object in the game
  */
 public class Shooter {
@@ -15,7 +14,7 @@ public class Shooter {
     
     private int dx=9;
     
-    private Image img;
+    private Image img , backImg;
     
     public Shooter(GamePanel gp){
         //this(gp.getWidth()/2 , gp.getHeight());
@@ -24,7 +23,9 @@ public class Shooter {
         this.y = gp.getHeight()-150;
         
         img = new ImageIcon("images/plane.png").getImage();
-        
+        //img = new ImageIcon(getClass().getResource("images/plane.png")).getImage();
+        img = img.getScaledInstance(len, len, Image.SCALE_SMOOTH);
+        this.backImg = new ImageIcon("images/back.jpg").getImage();
     }
     
     
@@ -71,7 +72,7 @@ public class Shooter {
         //g.fill3DRect(x-len/2, y-len/2 ,len,len,true);
         //g.setColor(new Color(100,100,110));
         //g.fill3DRect(x-5,y-len, 10, len/2,true);
-        g.drawImage(img,x-len/2 , y-len/2, len,len,null);
-        //g.drawImage(img, x-len/2, y-len/2,null);
+        g.drawImage(backImg,0,0,null);
+        g.drawImage(img, x-len/2, y-len/2,null);
     }
 }

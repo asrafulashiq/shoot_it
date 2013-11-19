@@ -10,6 +10,7 @@ import java.util.Iterator;
 
 public class GamePanel extends JPanel implements ActionListener{
     
+    private Image img = new ImageIcon("images/back.jpg").getImage();
     
     private int PWIDTH = 700;
     private int PHEIGHT = 700 ;
@@ -95,7 +96,7 @@ public class GamePanel extends JPanel implements ActionListener{
         this.printScreen();
         
         try{
-            Thread.sleep(10);
+            Thread.sleep(5);
         }
         catch(InterruptedException ex){
             
@@ -161,7 +162,10 @@ public class GamePanel extends JPanel implements ActionListener{
         
         Graphics g = this.getGraphics();
         g.clearRect(0, 0, this.getWidth(), this.getHeight());
-        g.setColor(new Color(130,130,150));
+        
+        //g.drawImage(img, 0, 0,null);
+        //g.setColor(new Color(130,130,150));
+        //this.setBackground(new);
         g.fillRect(0, 0, getWidth(), getHeight());
         this.shooter.draw(g);
         
