@@ -3,6 +3,7 @@ package shootit;
 
 import java.awt.*;
 import java.util.Random;
+import javax.swing.ImageIcon;
 
 public class Obstacle {
     
@@ -16,14 +17,15 @@ public class Obstacle {
     
     public static int dx;
     
+    private Image img ;
    
     
     private Random rand = new Random();
     
     public GamePanel gp ;
     
-    public int RX =20;
-    public int RY =18;
+    public int RX =50;
+    public int RY =50;
     
     public Obstacle(GamePanel gp){
         this.gp = gp;
@@ -51,19 +53,26 @@ public class Obstacle {
                 );
         
         // set size
-        this.RX = (rand.nextInt(10))+10;
-        this.RY = (rand.nextInt(10))+10;
+        this.RX = (rand.nextInt(10))+30;
+        this.RY = (rand.nextInt(10))+30;
         color =  this.randColor();
+        
+       // String imgFile = "images/b1L.png";
+        String imgFile = "images/ob1"+(this.orient==RIGHT? "L.png" : "R.png" );
+        this.img = new ImageIcon(imgFile).getImage().getScaledInstance(2*RX,2* RY,Image.SCALE_SMOOTH);
+        
     }
     
     /*
      * draw in the graphics
      */
     public void draw(Graphics g){
-        g.setColor(color);
-        g.fillOval(x-RX, y-RY, 2*RX, 2*RY);
-        g.setColor(Color.darkGray);
-        g.drawOval(x-RX, y-RY, 2*RX, 2*RY);
+        //g.setColor(color);
+        //g.fillOval(x-RX, y-RY, 2*RX, 2*RY);
+        //g.setColor(Color.darkGray);
+        //g.drawOval(x-RX, y-RY, 2*RX, 2*RY);
+        
+        g.drawImage(img, x-RX, y-RY, null);
         
         
     }
@@ -102,7 +111,7 @@ public class Obstacle {
     public boolean hit(Point p){
         int bx = p.x;
         int by = p.y;
-        if(bx>this.x-RX && bx< x+RX && by>y-RY && by < y+RY )
+        if(bx>this.x-RX+8 && bx< x+RX-8 && by>y-RY && by < y+RY )
             return true;
         return false;
     }

@@ -39,8 +39,7 @@ public class Bomb {
         //g.fillOval(x-RADIUS/2, y-RADIUS/2, 2*RADIUS, 2*RADIUS);
         g.drawImage(img, x-5, y+40, null);
     }
-    
-    
+   
     
     /*
      * get position of the bomb
