@@ -56,6 +56,7 @@ public class ShootIt extends JFrame implements WindowListener{
     
     @Override
     public void windowClosed(WindowEvent e){
+        System.exit(0);
         
     }
     
