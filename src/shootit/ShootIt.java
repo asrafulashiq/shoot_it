@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class ShootIt extends JFrame implements WindowListener{
 
-    private int PWIDTH = 700;
+    private int PWIDTH = 900;
     private int PHEIGHT = 700;
     GamePanel panel;
     
